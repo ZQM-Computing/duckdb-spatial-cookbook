@@ -1,5 +1,7 @@
 # duckdb-spatial-patterns — DuckDB Spatial Patterns for Analytical Geospatial SQL
 
+[![Validate examples](https://github.com/ZQM-Computing/duckdb-spatial-patterns/actions/workflows/validate.yml/badge.svg)](https://github.com/ZQM-Computing/duckdb-spatial-patterns/actions/workflows/validate.yml)
+
 Runnable **DuckDB Spatial** patterns for analytical geospatial work: reading **GeoJSON, GeoParquet, and CSV** in place, **spatial joins**, **nearest-neighbor** queries, coordinate-system handling (including the **EPSG axis-order trap**), **GeoParquet export and partitioning**, and **H3 hexagon aggregation** — all with **no database server to run**. DuckDB is embedded: `pip install duckdb` and the patterns execute.
 
 This is the analytical companion to [postgis-patterns](https://github.com/ZQM-Computing/postgis-patterns): the same synthetic dataset and the same questions, answered with the embedded engine instead of the server database. Explore in DuckDB, persist and serve from PostGIS — the [pattern guide](docs/pattern-guide.md) maps when each engine earns its place.

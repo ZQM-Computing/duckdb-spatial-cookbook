@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Run every pattern in order against a fresh in-memory DuckDB, then the
 checks in tests/checks.sql.
 
@@ -13,7 +12,6 @@ nonzero.
 
 from __future__ import annotations
 
-import re
 import sys
 from pathlib import Path
 
@@ -59,7 +57,9 @@ def run_file(con: duckdb.DuckDBPyConnection, rel: str) -> None:
 
 def run_checks(con: duckdb.DuckDBPyConnection) -> None:
     print("\n==> tests/checks.sql")
-    rows = con.execute((ROOT / "tests/checks.sql").read_text(encoding="utf-8")).fetchall()
+    rows = con.execute(
+        (ROOT / "tests/checks.sql").read_text(encoding="utf-8")
+    ).fetchall()
     failures = []
     for name, expected, actual in rows:
         status = "ok" if expected == actual else "FAIL"

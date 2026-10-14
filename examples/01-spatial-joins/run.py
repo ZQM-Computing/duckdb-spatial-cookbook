@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
 """Example 01: Spatial joins with DuckDB."""
+
 import duckdb
 
 con = duckdb.connect()

@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
 """Example 02: Nearest neighbor with DuckDB."""
+
 import duckdb
 
 con = duckdb.connect()

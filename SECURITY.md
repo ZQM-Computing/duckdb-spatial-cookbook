@@ -1,15 +1,31 @@
-# Security policy
+# Security Policy
 
-## Supported version
+Report vulnerabilities to zqmcomputing@gmail.com.
 
-Security fixes are applied to the `main` branch. This repository contains examples and a local runner; it is not a hosted service.
+## Scope
 
-## Reporting a vulnerability
+- All ZQM Computing public repositories
+- ZQM Labs infrastructure and tooling
 
-Email **zqmcomputing@gmail.com** with the subject `duckdb-spatial-patterns security` if you find a vulnerability in the example code or workflow configuration. Please do not open a public issue for a sensitive report.
+## Reporting
 
-Include the affected file, the impact you observed, and reproduction steps when available.
+- **Email**: zqmcomputing@gmail.com
+- **GitHub Security Advisory**: Use the "Security" tab on GitHub
+- Please do NOT open public issues for security vulnerabilities
 
-## Extension note
+## What to Expect
 
-The patterns install DuckDB's official `spatial` extension and the `h3` community extension at runtime. Community extensions are third-party code: in your own environment, pin the DuckDB version and source extensions from the official repositories, as the examples do.
+- Acknowledgment within 48 hours
+- Assessment and severity classification within 5 business days
+- Coordinated disclosure timeline agreed upon with reporter
+
+## Supported Versions
+
+| Version | Supported |
+|---------|-----------|
+| latest  | Yes        |
+| < latest| No         |
+
+---
+
+*Part of the [ZQM Computing](https://github.com/ZQM-Computing) ecosystem.*

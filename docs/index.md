@@ -1,4 +1,4 @@
-﻿# DuckDB Spatial Patterns
+# DuckDB Spatial Patterns
 
 > DuckDB Spatial patterns â€” GeoJSON/GeoParquet reads, spatial joins, KNN, GeoParquet export, H3 aggregation
 
@@ -80,7 +80,7 @@ All data is synthetic. Coordinates fall around Volusia County, Florida for reali
 
 ## Contributing
 
-Issues and pull requests are welcome. Contributions should keep the suite green via `python scripts/run_examples.py`, state the DuckDB version they were verified on, and keep all data synthetic. See [`CONTRIBUTING.md`](../CONTRIBUTING.md).
+Issues and pull requests are welcome. Contributions should keep the suite green via `python scripts/run_examples.py`, state the DuckDB version they were verified on, and keep all data synthetic. See [`CONTRIBUTING.md`](https://github.com/ZQM-Computing/duckdb-spatial-patterns/blob/main/CONTRIBUTING.md).
 
 ## Maintainer
 

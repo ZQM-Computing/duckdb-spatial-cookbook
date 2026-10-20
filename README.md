@@ -1,11 +1,13 @@
 # duckdb-spatial-patterns — DuckDB Spatial Patterns for Analytical Geospatial SQL
 
 <!-- ZQM-START -->
+<!-- markdownlint-disable MD033 -->
 <p align="center">
   <strong>ZQM Computing — Geospatial Engineering & Scientific Computing</strong><br>
   <a href="https://github.com/ZQM-Computing">ZQM Computing</a> •
   <a href="https://github.com/ZQM-Labs">ZQM Labs</a>
 </p>
+<!-- markdownlint-enable MD033 -->
 <!-- ZQM-END -->
 
 [![Validate examples](https://github.com/ZQM-Computing/duckdb-spatial-patterns/actions/workflows/validate.yml/badge.svg)](https://github.com/ZQM-Computing/duckdb-spatial-patterns/actions/workflows/validate.yml)
@@ -130,6 +132,7 @@ MIT — see [`LICENSE`](LICENSE).
 *Part of [ZQM Computing](https://github.com/ZQM-Computing) — geospatial engineering, scientific computing, and infrastructure patterns.*
 
 <!-- ZQM-FOOTER-START -->
+<!-- markdownlint-disable MD033 -->
 ---
 
 <p align="center">
@@ -138,4 +141,5 @@ MIT — see [`LICENSE`](LICENSE).
   <a href="https://github.com/ZQM-Labs">ZQM Labs</a> •
   <a href="https://github.com/ZQM-Computing">ZQM Computing</a>
 </p>
+<!-- markdownlint-enable MD033 -->
 <!-- ZQM-FOOTER-END -->

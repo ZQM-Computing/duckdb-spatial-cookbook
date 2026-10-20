@@ -1,6 +1,6 @@
-# DuckDB Spatial Patterns
+﻿# DuckDB Spatial Patterns
 
-> DuckDB Spatial patterns — GeoJSON/GeoParquet reads, spatial joins, KNN, GeoParquet export, H3 aggregation
+> DuckDB Spatial patterns â€" GeoJSON/GeoParquet reads, spatial joins, KNN, GeoParquet export, H3 aggregation
 
 ## duckdb-spatial-patterns — DuckDB Spatial Patterns for Analytical Geospatial SQL
 
@@ -37,7 +37,7 @@ You can also explore interactively: install the [DuckDB CLI](https://duckdb.org/
 
 | # | Pattern | What it teaches |
 |---|---|---|
-| 01 | Reading geospatial data | `ST_Read` on GeoJSON, CSV coordinates — geometry, typed GeoParquet reads |
+| 01 | Reading geospatial data | `ST_Read` on GeoJSON, CSV coordinates → geometry, typed GeoParquet reads |
 | 02 | Spatial joins | Points-in-polygons with `ST_Within`, orphan detection, per-area land-use summaries |
 | 03 | Coordinate systems | The EPSG:4326 axis-order trap and the `OGC:CRS84` fix; sphere vs. planar distances; State Plane transforms |
 | 04 | Nearest neighbor | KNN without a spatial index: `row_number()` + `QUALIFY` ranking over `ST_Distance_Sphere` |
@@ -58,6 +58,7 @@ Data engineers and GIS analysts who keep spinning up a server database for what 
 ## Repository layout
 
 ```text
+.
 ├── sql/00_setup.sql     # extensions + sample tables from data/
 ├── patterns/            # the six patterns, in reading order
 ├── data/                # synthetic GeoJSON (3 areas, 9 sites, 4 parcels)

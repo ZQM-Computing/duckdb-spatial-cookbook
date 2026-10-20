@@ -1,4 +1,4 @@
-# DuckDB Spatial Patterns 
+﻿# DuckDB Spatial Patterns
 
 > DuckDB Spatial patterns â€” GeoJSON/GeoParquet reads, spatial joins, KNN, GeoParquet export, H3 aggregation
 

@@ -29,6 +29,13 @@ The runner executes every pattern against a fresh in-memory database and finishe
 
 You can also explore interactively: install the [DuckDB CLI](https://duckdb.org/docs/installation/), open a database, and paste any pattern after running `sql/00_setup.sql`.
 
+## Usage
+
+Run the patterns in order, or jump straight to the one you need — each is
+a standalone DuckDB example that keeps all data synthetic. Start with the
+[Quick start](#quick-start), then work through [The patterns](#the-patterns)
+and run the examples with `python scripts/run_examples.py`.
+
 ## The patterns
 
 | # | Pattern | What it teaches |

@@ -80,7 +80,7 @@ All data is synthetic. Coordinates fall around Volusia County, Florida for reali
 
 ## Contributing
 
-Issues and pull requests are welcome. Contributions should keep the suite green via `python scripts/run_examples.py`, state the DuckDB version they were verified on, and keep all data synthetic. See [`CONTRIBUTING.md`](CONTRIBUTING.md).
+Issues and pull requests are welcome. Contributions should keep the suite green via `python scripts/run_examples.py`, state the DuckDB version they were verified on, and keep all data synthetic. See [`CONTRIBUTING.md`](../CONTRIBUTING.md).
 
 ## Maintainer
 
@@ -111,7 +111,7 @@ The configured CI workflow is the source of truth for automated checks. A passin
 
 ## License
 
-MIT — see [`LICENSE`](LICENSE).
+MIT — see [`LICENSE`](../LICENSE).
 
 ## Related repositories
 

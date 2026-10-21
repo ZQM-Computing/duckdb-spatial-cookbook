@@ -125,7 +125,7 @@ MIT — see [`LICENSE`](https://github.com/ZQM-Computing/duckdb-spatial-patterns
 - [geoparquet-patterns](https://github.com/ZQM-Computing/geoparquet-patterns) — GeoParquet patterns for columnar analytics
 - [h3-patterns](https://github.com/ZQM-Computing/h3-patterns) — H3 hexagonal grid patterns
 
-*Part of [ZQM Computing](https://github.com/ZQM-Computing) — geospatial engineering, scientific computing, and infrastructure patterns.*
+*Part of [ZQM Computing](https://github.com/ZQM-Computing) — geospatial engineering, scientific computing, and infrastructure patterns; the geospatial arm of [ZQM Labs](https://zqmlabs.com), makers of Z's Quests & Mischief location games.*
 
 <!-- ZQM-FOOTER-START -->
 <!-- markdownlint-disable MD033 -->

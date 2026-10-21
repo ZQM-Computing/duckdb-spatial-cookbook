@@ -1,26 +1,26 @@
 ﻿site_name: DuckDB Spatial Patterns
-site_description: DuckDB Spatial patterns â€” GeoJSON/GeoParquet reads, spatial joins, KNN, GeoParquet export, H3 aggregation
-site_url: https://duckdb-spatial.zqmlabs.com/
+site_description: DuckDB Spatial patterns — GeoJSON/GeoParquet reads, spatial joins, KNN, GeoParquet export, H3 aggregation
+site_url: https://duckdb.zqmlabs.com/
 theme:
-  name: material
-  palette:
-    - scheme: slate
-      primary: blue
-      accent: light blue
-      toggle:
-        icon: material/brightness-7
-        name: Switch to light mode
-    - scheme: default
-      primary: blue
-      accent: blue
-      toggle:
-        icon: material/brightness-4
-        name: Switch to dark mode
+    name: material
+    palette:
+      - scheme: slate
+        primary: blue
+        accent: light blue
+        toggle:
+          icon: material/brightness-7
+          name: Switch to light mode
+      - scheme: default
+        primary: blue
+        accent: blue
+        toggle:
+          icon: material/brightness-4
+          name: Switch to dark mode
 markdown_extensions:
-  - admonition
-  - codehilite:
-      guess_lang: false
-  - toc:
-      permalink: true
+    - admonition
+    - codehilite:
+        guess_lang: false
+    - toc:
+        permalink: true
 nav:
-  - Home: index.md
+    - Home: index.md

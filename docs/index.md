@@ -1,6 +1,6 @@
-﻿# DuckDB Spatial Patterns
+# DuckDB Spatial Patterns
 
-> DuckDB Spatial patterns â€” GeoJSON/GeoParquet reads, spatial joins, KNN, GeoParquet export, H3 aggregation
+> DuckDB Spatial patterns — GeoJSON/GeoParquet reads, spatial joins, KNN, GeoParquet export, H3 aggregation
 
 ## duckdb-spatial-patterns — DuckDB Spatial Patterns for Analytical Geospatial SQL
 
@@ -111,7 +111,7 @@ The configured CI workflow is the source of truth for automated checks. A passin
 
 ## License
 
-MIT — see [`LICENSE`](../LICENSE).
+MIT — see [`LICENSE`](https://github.com/ZQM-Computing/duckdb-spatial-patterns/blob/main/LICENSE).
 
 ## Related repositories
 

@@ -2,14 +2,18 @@
 -- Trap 1: DuckDB follows the EPSG authority axis order. For EPSG:4326 that
 -- order is (latitude, longitude), while GeoJSON and ST_Point use
 -- (longitude, latitude). Transforming with 'EPSG:4326' as the source on
--- lon/lat data silently produces garbage coordinates.
+-- lon/lat data used to produce silently axis-swapped garbage; current
+-- DuckDB refuses the transform with an axis-order error instead (unless
+-- 'geometry_always_xy' is enabled) -- safer, and the error is now the
+-- thing to recognize.
 --
 -- The fix: name the lon/lat order explicitly with 'OGC:CRS84'.
 
--- Garbage (axis-swapped) -- shown so you can recognize it:
-SELECT ST_AsText(
-    ST_Transform(ST_Point(-81.10, 29.28), 'EPSG:4326', 'EPSG:2236')
-) AS wrong_axis_order;
+-- The trap, kept as a commented snippet so this file stays runnable
+-- (axis-swapped garbage on old DuckDB, a hard error on current DuckDB):
+-- SELECT ST_AsText(
+--     ST_Transform(ST_Point(-81.10, 29.28), 'EPSG:4326', 'EPSG:2236')
+-- ) AS wrong_axis_order;
 
 -- Correct: CRS84 declares (longitude, latitude) order.
 -- Florida State Plane East (EPSG:2236, US survey feet):

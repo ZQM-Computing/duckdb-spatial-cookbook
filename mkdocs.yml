@@ -3,6 +3,7 @@ site_description: DuckDB Spatial patterns — GeoJSON/GeoParquet reads, spatial 
 site_url: https://duckdb.zqmlabs.com/
 theme:
     name: material
+    custom_dir: docs/overrides
     palette:
       - scheme: slate
         primary: blue

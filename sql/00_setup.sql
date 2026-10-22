@@ -9,6 +9,14 @@ LOAD spatial;
 INSTALL h3 FROM community;
 LOAD h3;
 
+-- Every dataset and example in this repo uses (longitude, latitude)
+-- coordinate order. Current DuckDB refuses axis-sensitive functions
+-- (ST_Transform, ST_Distance_Sphere, ...) on geometry without an
+-- explicit CRS unless this setting is on -- it is the documented
+-- opt-in for "my coordinates are always lon/lat". The whole suite
+-- (patterns + tests/checks.sql) is written against that assumption.
+SET geometry_always_xy = true;
+
 -- The sample data is the same synthetic Volusia-shaped dataset used across
 -- the ZQM geospatial portfolio repos: 3 service areas, 9 sites, 4 parcels.
 -- No real property, infrastructure, or personal data.

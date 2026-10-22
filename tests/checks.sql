@@ -1,4 +1,6 @@
 -- Checks: every row is (check_name, expected, actual) as text.
+-- (Sphere distances use plain lon/lat geometry: sql/00_setup.sql sets
+-- geometry_always_xy, so no axis-swap idiom is needed -- or correct.)
 -- scripts/run_examples.py compares expected vs actual and fails on a miss.
 SELECT 'areas_count', '3', count(*)::VARCHAR FROM service_areas
 UNION ALL
@@ -28,15 +30,13 @@ SELECT 'nearest_site_to_parcel_2', 'Central depot', (
     SELECT s.name
     FROM parcels p CROSS JOIN service_sites s
     WHERE p.parcel_id = 2
-    ORDER BY ST_Distance_Sphere(
-        ST_Point(ST_Y(ST_Centroid(p.geom)), ST_X(ST_Centroid(p.geom))),
-        ST_Point(ST_Y(s.geom), ST_X(s.geom)))
+    ORDER BY ST_Distance_Sphere(ST_Centroid(p.geom), s.geom)
     LIMIT 1
 )
 UNION ALL
 SELECT 'sphere_distance_north_pair_m', '10235', round(ST_Distance_Sphere(
-    ST_Point(ST_Y(ST_Point(-81.10, 29.28)), ST_X(ST_Point(-81.10, 29.28))),
-    ST_Point(ST_Y(ST_Point(-81.02, 29.22)), ST_X(ST_Point(-81.02, 29.22)))
+    ST_Point(-81.10, 29.28),
+    ST_Point(-81.02, 29.22)
 ))::BIGINT::VARCHAR
 UNION ALL
 SELECT 'state_plane_x_of_north_depot', '624288', round(ST_X(

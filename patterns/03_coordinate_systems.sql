@@ -5,11 +5,10 @@
 --
 -- Current DuckDB (>= 2.0) refuses to guess: any axis-sensitive function
 -- (ST_Transform, ST_Distance_Sphere, ...) called on geometry without an
--- explicit CRS errors out unless 'geometry_always_xy' is enabled. The
+-- explicit CRS errors out unless 'geometry_always_xy' is enabled. That
 -- setting is DuckDB's sanctioned switch -- "always assume my coordinates
--- are (longitude, latitude)" -- and every example in this file uses
--- lon/lat data, so the file enables it for the session.
-SET geometry_always_xy = true;
+-- are (longitude, latitude)" -- and sql/00_setup.sql enables it for the
+-- whole suite, this file included.
 
 -- Trap 1: naming the wrong source CRS. Transforming lon/lat data with
 -- 'EPSG:4326' (authority order: lat, lon) as the source used to produce

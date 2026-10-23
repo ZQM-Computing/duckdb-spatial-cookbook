@@ -1,4 +1,4 @@
-# Pattern guide: when DuckDB Spatial, when PostGIS
+# Pattern guide: DuckDB or PostGIS
 
 These two engines are complements, not competitors. This repo and
 [postgis-patterns](https://github.com/ZQM-Computing/postgis-patterns) use the

@@ -1,7 +1,7 @@
 # Pattern guide: DuckDB or PostGIS
 
 These two engines are complements, not competitors. This repo and
-[postgis-patterns](https://github.com/ZQM-Computing/postgis-patterns) use the
+[postgis-cookbook](https://github.com/ZQM-Computing/postgis-cookbook) use the
 same sample dataset so the patterns translate directly.
 
 | Question | DuckDB Spatial (this repo) | PostGIS |

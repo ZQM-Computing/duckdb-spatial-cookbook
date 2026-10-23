@@ -80,7 +80,7 @@ def main() -> int:
     for rel in FILES:
         run_file(con, rel)
     run_checks(con)
-    print("\nduckdb-spatial-patterns: all examples and checks completed.")
+    print("\nduckdb-spatial-cookbook: all examples and checks completed.")
     return 0
 
 

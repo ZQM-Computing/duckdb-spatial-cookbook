@@ -2,7 +2,7 @@
 
 > DuckDB Spatial patterns — GeoJSON/GeoParquet reads, spatial joins, KNN, GeoParquet export, H3 aggregation
 
-## duckdb-spatial-patterns — DuckDB Spatial Patterns for Analytical Geospatial SQL
+## duckdb-spatial-cookbook — DuckDB Spatial Patterns for Analytical Geospatial SQL
 
 <!-- ZQM-START -->
 <!-- markdownlint-disable MD033 -->
@@ -14,17 +14,17 @@
 <!-- markdownlint-enable MD033 -->
 <!-- ZQM-END -->
 
-[![Validate examples](https://github.com/ZQM-Computing/duckdb-spatial-patterns/actions/workflows/validate.yml/badge.svg)](https://github.com/ZQM-Computing/duckdb-spatial-patterns/actions/workflows/validate.yml)
+[![Validate examples](https://github.com/ZQM-Computing/duckdb-spatial-cookbook/actions/workflows/validate.yml/badge.svg)](https://github.com/ZQM-Computing/duckdb-spatial-cookbook/actions/workflows/validate.yml)
 
 Runnable **DuckDB Spatial** patterns for analytical geospatial work: reading **GeoJSON, GeoParquet, and CSV** in place, **spatial joins**, **nearest-neighbor** queries, coordinate-system handling (including the **EPSG axis-order trap**), **GeoParquet export and partitioning**, and **H3 hexagon aggregation** — all with **no database server to run**. DuckDB is embedded: `pip install duckdb` and the patterns execute.
 
-This is the analytical companion to [postgis-patterns](https://github.com/ZQM-Computing/postgis-patterns): the same synthetic dataset and the same questions, answered with the embedded engine instead of the server database. Explore in DuckDB, persist and serve from PostGIS — the [pattern guide](pattern-guide.md) maps when each engine earns its place.
+This is the analytical companion to [postgis-cookbook](https://github.com/ZQM-Computing/postgis-cookbook): the same synthetic dataset and the same questions, answered with the embedded engine instead of the server database. Explore in DuckDB, persist and serve from PostGIS — the [pattern guide](pattern-guide.md) maps when each engine earns its place.
 
 ## Quick start
 
 ```bash
-git clone https://github.com/ZQM-Computing/duckdb-spatial-patterns.git
-cd duckdb-spatial-patterns
+git clone https://github.com/ZQM-Computing/duckdb-spatial-cookbook.git
+cd duckdb-spatial-cookbook
 pip install -r requirements.txt
 python scripts/run_examples.py
 ```
@@ -74,13 +74,13 @@ All data is synthetic. Coordinates fall around Volusia County, Florida for reali
 
 ## Companion repositories
 
-- [postgis-patterns](https://github.com/ZQM-Computing/postgis-patterns) — the same patterns as production PostGIS: indexing, tiling with `ST_AsMVT`, partitioning.
+- [postgis-cookbook](https://github.com/ZQM-Computing/postgis-cookbook) — the same patterns as production PostGIS: indexing, tiling with `ST_AsMVT`, partitioning.
 - [geospatial-api-reference](https://github.com/ZQM-Computing/geospatial-api-reference) — serving spatial data over REST (OGC API – Features, FastAPI + PostGIS).
 - [qgis-resources](https://github.com/ZQM-Computing/qgis-resources) — the desktop side: QGIS expressions, PyQGIS, styles, QField.
 
 ## Contributing
 
-Issues and pull requests are welcome. Contributions should keep the suite green via `python scripts/run_examples.py`, state the DuckDB version they were verified on, and keep all data synthetic. See [`CONTRIBUTING.md`](https://github.com/ZQM-Computing/duckdb-spatial-patterns/blob/main/CONTRIBUTING.md).
+Issues and pull requests are welcome. Contributions should keep the suite green via `python scripts/run_examples.py`, state the DuckDB version they were verified on, and keep all data synthetic. See [`CONTRIBUTING.md`](https://github.com/ZQM-Computing/duckdb-spatial-cookbook/blob/main/CONTRIBUTING.md).
 
 ## Maintainer
 
@@ -88,42 +88,42 @@ Maintained by [ZQM Computing](https://github.com/ZQM-Computing). Distilled from 
 
 ## More from this series
 
-- [postgis-patterns](https://github.com/ZQM-Computing/postgis-patterns) — Production PostGIS patterns: spatial indexing, joins & KNN, SRID management, vector tiles, data quality, partitioning
-- [pgrouting-patterns](https://github.com/ZQM-Computing/pgrouting-patterns) — pgRouting network analysis on PostGIS: shortest path, driving distance, isochrones, turn restrictions, traffic-aware routing
-- [geopandas-patterns](https://github.com/ZQM-Computing/geopandas-patterns) — GeoPandas/Shapely patterns for Python geospatial workflows: spatial joins, CRS handling, overlays, interpolation, performance
-- [gdal-patterns](https://github.com/ZQM-Computing/gdal-patterns) — GDAL/OGR command-line patterns: conversion, reprojection, clipping, mosaicking — production-tested, runnable examples
-- [stac-patterns](https://github.com/ZQM-Computing/stac-patterns) — STAC patterns for geospatial data discovery: catalogs, item validation, search API, bulk operations, cloud deployment
-- [maplibre-patterns](https://github.com/ZQM-Computing/maplibre-patterns) — MapLibre GL JS patterns for frontend vector tile rendering: custom layers, 3D terrain, performance tuning, interactive maps
-- [cog-patterns](https://github.com/ZQM-Computing/cog-patterns) — Cloud Optimized GeoTIFF patterns: creation, validation, TiTiler serving, xarray integration, performance benchmarking
-- [geoparquet-patterns](https://github.com/ZQM-Computing/geoparquet-patterns) — GeoParquet patterns for columnar geospatial analytics: partitioning, predicate pushdown, DuckDB/Spark integration
-- [h3-patterns](https://github.com/ZQM-Computing/h3-patterns) — H3 hexagonal grid patterns: indexing, aggregation, visualization, grid comparisons, performance benchmarks
+- [postgis-cookbook](https://github.com/ZQM-Computing/postgis-cookbook) — Production PostGIS patterns: spatial indexing, joins & KNN, SRID management, vector tiles, data quality, partitioning
+- [pgrouting-cookbook](https://github.com/ZQM-Computing/pgrouting-cookbook) — pgRouting network analysis on PostGIS: shortest path, driving distance, isochrones, turn restrictions, traffic-aware routing
+- [geopandas-cookbook](https://github.com/ZQM-Computing/geopandas-cookbook) — GeoPandas/Shapely patterns for Python geospatial workflows: spatial joins, CRS handling, overlays, interpolation, performance
+- [gdal-cookbook](https://github.com/ZQM-Computing/gdal-cookbook) — GDAL/OGR command-line patterns: conversion, reprojection, clipping, mosaicking — production-tested, runnable examples
+- [stac-cookbook](https://github.com/ZQM-Computing/stac-cookbook) — STAC patterns for geospatial data discovery: catalogs, item validation, search API, bulk operations, cloud deployment
+- [maplibre-cookbook](https://github.com/ZQM-Computing/maplibre-cookbook) — MapLibre GL JS patterns for frontend vector tile rendering: custom layers, 3D terrain, performance tuning, interactive maps
+- [cog-cookbook](https://github.com/ZQM-Computing/cog-cookbook) — Cloud Optimized GeoTIFF patterns: creation, validation, TiTiler serving, xarray integration, performance benchmarking
+- [geoparquet-cookbook](https://github.com/ZQM-Computing/geoparquet-cookbook) — GeoParquet patterns for columnar geospatial analytics: partitioning, predicate pushdown, DuckDB/Spark integration
+- [h3-cookbook](https://github.com/ZQM-Computing/h3-cookbook) — H3 hexagonal grid patterns: indexing, aggregation, visualization, grid comparisons, performance benchmarks
 - [qgis-resources](https://github.com/ZQM-Computing/qgis-resources) — QGIS expressions, PyQGIS snippets, Processing scripts, styles, and QField field-collection guides
 - [geospatial-api-reference](https://github.com/ZQM-Computing/geospatial-api-reference) — OGC API – Features reference implementation with FastAPI and PostGIS backends
-- [ollama-fleet-patterns](https://github.com/ZQM-Computing/ollama-fleet-patterns) — Ollama fleet operations: model management, health checks, load-spreading, VRAM budgeting, dependency-light RAG
+- [ollama-fleet-cookbook](https://github.com/ZQM-Computing/ollama-fleet-cookbook) — Ollama fleet operations: model management, health checks, load-spreading, VRAM budgeting, dependency-light RAG
 - [proxmox-ceph-operations](https://github.com/ZQM-Computing/proxmox-ceph-operations) — Proxmox VE + Ceph operations runbooks: health checks, backup discipline, OSD replacement, upgrade checklists
-- [geospatial-patterns](https://github.com/ZQM-Computing/geospatial-patterns) — Umbrella index for all ZQM geospatial pattern repos
+- [geospatial-cookbooks](https://github.com/ZQM-Computing/geospatial-cookbooks) — Umbrella index for all ZQM geospatial pattern repos
 
 ## Documentation and validation
 
-For setup instructions, reproducible examples, data provenance, CRS/SRID assumptions, security guidance, and dependency labels, follow the [ZQM geospatial repository documentation standard](https://github.com/ZQM-Computing/geospatial-patterns/blob/main/docs/repository-documentation-standard.md).
+For setup instructions, reproducible examples, data provenance, CRS/SRID assumptions, security guidance, and dependency labels, follow the [ZQM geospatial repository documentation standard](https://github.com/ZQM-Computing/geospatial-cookbooks/blob/main/docs/repository-documentation-standard.md).
 
 The configured CI workflow is the source of truth for automated checks. A passing workflow establishes only that its checks passed for that commit; it does not certify production deployment or prove that every dependency and operating environment was covered.
 
 ## License
 
-MIT — see [`LICENSE`](https://github.com/ZQM-Computing/duckdb-spatial-patterns/blob/main/LICENSE).
+MIT — see [`LICENSE`](https://github.com/ZQM-Computing/duckdb-spatial-cookbook/blob/main/LICENSE).
 
 ## Related repositories
 
-- [geospatial-patterns](https://github.com/ZQM-Computing/geospatial-patterns) — umbrella index of all geospatial pattern repos
-- [gdal-patterns](https://github.com/ZQM-Computing/gdal-patterns) — GDAL/OGR CLI patterns for raster/vector conversion
-- [geopandas-patterns](https://github.com/ZQM-Computing/geopandas-patterns) — GeoPandas/Shapely patterns for Python geospatial workflows
-- [pgrouting-patterns](https://github.com/ZQM-Computing/pgrouting-patterns) — pgRouting patterns for PostGIS network analysis
-- [stac-patterns](https://github.com/ZQM-Computing/stac-patterns) — STAC patterns for geospatial data discovery
-- [cog-patterns](https://github.com/ZQM-Computing/cog-patterns) — Cloud Optimized GeoTIFF patterns
-- [maplibre-patterns](https://github.com/ZQM-Computing/maplibre-patterns) — MapLibre GL JS patterns for frontend vector tiles
-- [geoparquet-patterns](https://github.com/ZQM-Computing/geoparquet-patterns) — GeoParquet patterns for columnar analytics
-- [h3-patterns](https://github.com/ZQM-Computing/h3-patterns) — H3 hexagonal grid patterns
+- [geospatial-cookbooks](https://github.com/ZQM-Computing/geospatial-cookbooks) — umbrella index of all geospatial pattern repos
+- [gdal-cookbook](https://github.com/ZQM-Computing/gdal-cookbook) — GDAL/OGR CLI patterns for raster/vector conversion
+- [geopandas-cookbook](https://github.com/ZQM-Computing/geopandas-cookbook) — GeoPandas/Shapely patterns for Python geospatial workflows
+- [pgrouting-cookbook](https://github.com/ZQM-Computing/pgrouting-cookbook) — pgRouting patterns for PostGIS network analysis
+- [stac-cookbook](https://github.com/ZQM-Computing/stac-cookbook) — STAC patterns for geospatial data discovery
+- [cog-cookbook](https://github.com/ZQM-Computing/cog-cookbook) — Cloud Optimized GeoTIFF patterns
+- [maplibre-cookbook](https://github.com/ZQM-Computing/maplibre-cookbook) — MapLibre GL JS patterns for frontend vector tiles
+- [geoparquet-cookbook](https://github.com/ZQM-Computing/geoparquet-cookbook) — GeoParquet patterns for columnar analytics
+- [h3-cookbook](https://github.com/ZQM-Computing/h3-cookbook) — H3 hexagonal grid patterns
 
 *Part of [ZQM Computing](https://github.com/ZQM-Computing) — geospatial engineering, scientific computing, and infrastructure patterns; the geospatial arm of [ZQM Labs](https://zqmlabs.com), makers of Z's Quests & Mischief location games.*
 

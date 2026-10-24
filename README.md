@@ -1,3 +1,5 @@
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![GitHub](https://img.shields.io/github/stars/ZQM-Computing/duckdb-spatial-cookbook?style=social)
 # duckdb-spatial-patterns — DuckDB Spatial Patterns for Analytical Geospatial SQL
 
 <!-- ZQM-START -->

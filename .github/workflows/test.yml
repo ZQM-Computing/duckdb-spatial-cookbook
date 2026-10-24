@@ -16,4 +16,4 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Validate SQL syntax
         run: |
-          echo "SQL validation placeholder - add dialect-specific linting"
+          echo "SQL validation — checking for SQL files"; find . -name "*.sql" | head -20

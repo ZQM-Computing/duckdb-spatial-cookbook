@@ -1,6 +1,6 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![GitHub](https://img.shields.io/github/stars/ZQM-Computing/duckdb-spatial-cookbook?style=social)
-# duckdb-spatial-patterns — DuckDB Spatial Patterns for Analytical Geospatial SQL
+# duckdb-spatial-cookbook — DuckDB Spatial Patterns for Analytical Geospatial SQL
 
 <!-- ZQM-START -->
 <!-- markdownlint-disable MD033 -->
@@ -11,7 +11,7 @@
 <!-- markdownlint-enable MD033 -->
 <!-- ZQM-END -->
 
-[![Validate examples](https://github.com/ZQM-Computing/duckdb-spatial-patterns/actions/workflows/validate.yml/badge.svg)](https://github.com/ZQM-Computing/duckdb-spatial-patterns/actions/workflows/validate.yml)
+[![Validate examples](https://github.com/ZQM-Computing/duckdb-spatial-cookbook/actions/workflows/validate.yml/badge.svg)](https://github.com/ZQM-Computing/duckdb-spatial-cookbook/actions/workflows/validate.yml)
 
 Runnable **DuckDB Spatial** patterns for analytical geospatial work: reading **GeoJSON, GeoParquet, and CSV** in place, **spatial joins**, **nearest-neighbor** queries, coordinate-system handling (including the **EPSG axis-order trap**), **GeoParquet export and partitioning**, and **H3 hexagon aggregation** — all with **no database server to run**. DuckDB is embedded: `pip install duckdb` and the patterns execute.
 
@@ -30,8 +30,8 @@ This is the analytical companion to [postgis-patterns](https://github.com/ZQM-Co
 ## Quick start
 
 ```bash
-git clone https://github.com/ZQM-Computing/duckdb-spatial-patterns.git
-cd duckdb-spatial-patterns
+git clone https://github.com/ZQM-Computing/duckdb-spatial-cookbook.git
+cd duckdb-spatial-cookbook
 pip install -r requirements.txt
 python scripts/run_examples.py
 ```
@@ -94,7 +94,7 @@ All data is synthetic. Coordinates fall around Volusia County, Florida for reali
 
 ## Contributing
 
-Issues and pull requests are welcome. Contributions should keep the suite green via `python scripts/run_examples.py`, state the DuckDB version they were verified on, and keep all data synthetic. See [`CONTRIBUTING.md`](https://github.com/ZQM-Computing/duckdb-spatial-patterns/blob/main/CONTRIBUTING.md).
+Issues and pull requests are welcome. Contributions should keep the suite green via `python scripts/run_examples.py`, state the DuckDB version they were verified on, and keep all data synthetic. See [`CONTRIBUTING.md`](https://github.com/ZQM-Computing/duckdb-spatial-cookbook/blob/main/CONTRIBUTING.md).
 
 ## Maintainer
 
@@ -125,6 +125,6 @@ The configured CI workflow is the source of truth for automated checks. A passin
 
 ## License
 
-MIT — see [`LICENSE`](https://github.com/ZQM-Computing/duckdb-spatial-patterns/blob/main/LICENSE).
+MIT — see [`LICENSE`](https://github.com/ZQM-Computing/duckdb-spatial-cookbook/blob/main/LICENSE).
 
 *Part of [ZQM Computing](https://github.com/ZQM-Computing) — geospatial engineering, scientific computing, and infrastructure patterns; the geospatial arm of [ZQM Labs](https://zqmlabs.com), makers of Z's Quests & Mischief location games.*

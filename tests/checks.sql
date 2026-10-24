@@ -34,6 +34,30 @@ SELECT 'nearest_site_to_parcel_2', 'Central depot', (
     LIMIT 1
 )
 UNION ALL
+SELECT 'nearest_site_to_parcel_1', 'Central depot', (
+    SELECT s.name
+    FROM parcels p CROSS JOIN service_sites s
+    WHERE p.parcel_id = 1
+    ORDER BY ST_Distance_Sphere(ST_Centroid(p.geom), s.geom), s.site_id
+    LIMIT 1
+)
+UNION ALL
+SELECT 'nearest_site_to_parcel_3', 'Coastal depot', (
+    SELECT s.name
+    FROM parcels p CROSS JOIN service_sites s
+    WHERE p.parcel_id = 3
+    ORDER BY ST_Distance_Sphere(ST_Centroid(p.geom), s.geom), s.site_id
+    LIMIT 1
+)
+UNION ALL
+SELECT 'nearest_site_to_parcel_4', 'West depot', (
+    SELECT s.name
+    FROM parcels p CROSS JOIN service_sites s
+    WHERE p.parcel_id = 4
+    ORDER BY ST_Distance_Sphere(ST_Centroid(p.geom), s.geom), s.site_id
+    LIMIT 1
+)
+UNION ALL
 SELECT 'sphere_distance_north_pair_m', '10235', round(ST_Distance_Sphere(
     ST_Point(-81.10, 29.28),
     ST_Point(-81.02, 29.22)

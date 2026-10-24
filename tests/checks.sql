@@ -48,7 +48,7 @@ FROM read_parquet('build/sites_by_category/**/*.parquet', hive_partitioning = tr
 WHERE category = 'operations'
 UNION ALL
 SELECT 'h3_cells_res8', '9', count(DISTINCT h3_latlng_to_cell(ST_Y(geom), ST_X(geom), 8))::VARCHAR
-FROM service_sites;
+FROM service_sites
 UNION ALL
 SELECT 'nearest_k_two_rows', '8', count(*)::VARCHAR
 FROM (

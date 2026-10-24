@@ -49,3 +49,26 @@ WHERE category = 'operations'
 UNION ALL
 SELECT 'h3_cells_res8', '9', count(DISTINCT h3_latlng_to_cell(ST_Y(geom), ST_X(geom), 8))::VARCHAR
 FROM service_sites;
+UNION ALL
+SELECT 'nearest_k_two_rows', '8', count(*)::VARCHAR
+FROM (
+    SELECT p.parcel_id, s.site_id,
+           row_number() OVER (
+               PARTITION BY p.parcel_id
+               ORDER BY ST_Distance_Sphere(ST_Centroid(p.geom), s.geom), s.site_id
+           ) AS rank
+    FROM parcels p CROSS JOIN service_sites s
+) ranked
+WHERE rank <= 2
+UNION ALL
+SELECT 'nearest_k_two_rank_values', '1,2', (
+    SELECT string_agg(DISTINCT rank::VARCHAR, ',' ORDER BY rank::VARCHAR)
+    FROM (
+        SELECT row_number() OVER (
+            PARTITION BY p.parcel_id
+            ORDER BY ST_Distance_Sphere(ST_Centroid(p.geom), s.geom), s.site_id
+        ) AS rank
+        FROM parcels p CROSS JOIN service_sites s
+    ) ranked
+    WHERE rank <= 2
+);

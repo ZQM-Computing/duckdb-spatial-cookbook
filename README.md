@@ -1,6 +1,7 @@
+# duckdb-spatial-cookbook — DuckDB Spatial Cookbook for Analytical Geospatial SQL
+
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![GitHub](https://img.shields.io/github/stars/ZQM-Computing/duckdb-spatial-cookbook?style=social)
-# duckdb-spatial-cookbook — DuckDB Spatial Cookbook for Analytical Geospatial SQL
 
 <!-- ZQM-START -->
 <!-- markdownlint-disable MD033 -->

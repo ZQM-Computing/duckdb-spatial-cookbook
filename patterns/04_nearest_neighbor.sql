@@ -1,51 +1,70 @@
--- Pattern 04: Nearest neighbor (KNN) with window functions
--- The PostGIS version of this pattern uses the KNN operator (<->) and a
--- GiST index. Embedded DuckDB has no spatial index to lean on, so the
--- pattern is: compute candidate distances, rank with a window function,
--- keep rank 1 with QUALIFY. On analytical data volumes this is fast --
--- and the shape works in any SQL engine.
+-- Pattern 04: Deterministic nearest-neighbor analysis
 --
--- Distances use the sphere idiom from pattern 03: the ST_Distance_Sphere
--- function reads x as latitude, so each (lon, lat) geometry is rebuilt as
--- ST_Point(ST_Y(g), ST_X(g)) before the call.
+-- sql/00_setup.sql sets geometry_always_xy = true. All geometries in this
+-- cookbook therefore use (longitude, latitude) order; do not swap X/Y before
+-- ST_Distance_Sphere. Swapping them produces incorrect distances and can
+-- move features to the wrong hemisphere.
+--
+-- This DuckDB example computes exact spherical distances for every
+-- parcel/site pair, then ranks the candidates. It is an O(P*S) analytical
+-- baseline; for large datasets, prefilter candidates or use a spatial-indexed
+-- backend such as PostGIS.
 
--- Nearest service site to every parcel centroid, with distance in km.
+WITH distances AS (
+    SELECT
+        p.parcel_id,
+        p.land_use,
+        s.site_id,
+        s.name AS nearest_site,
+        ST_Distance_Sphere(ST_Centroid(p.geom), s.geom) AS distance_m
+    FROM parcels AS p
+    CROSS JOIN service_sites AS s
+),
+ranked AS (
+    SELECT
+        *,
+        row_number() OVER (
+            PARTITION BY parcel_id
+            ORDER BY distance_m, site_id
+        ) AS rank
+    FROM distances
+)
 SELECT
-    p.parcel_id,
-    p.land_use,
-    s.name AS nearest_site,
-    round(ST_Distance_Sphere(
-        ST_Point(ST_Y(ST_Centroid(p.geom)), ST_X(ST_Centroid(p.geom))),
-        ST_Point(ST_Y(s.geom), ST_X(s.geom))
-    ) / 1000.0, 2) AS distance_km
-FROM parcels AS p
-CROSS JOIN service_sites AS s
-QUALIFY row_number() OVER (
-    PARTITION BY p.parcel_id
-    ORDER BY ST_Distance_Sphere(
-        ST_Point(ST_Y(ST_Centroid(p.geom)), ST_X(ST_Centroid(p.geom))),
-        ST_Point(ST_Y(s.geom), ST_X(s.geom))
-    )
-) = 1
-ORDER BY p.parcel_id;
+    parcel_id,
+    land_use,
+    site_id,
+    nearest_site,
+    round(distance_m / 1000.0, 2) AS distance_km
+FROM ranked
+WHERE rank = 1
+ORDER BY parcel_id;
 
--- The same ranking generalizes to K nearest: change the QUALIFY filter to
--- <= 3 and every parcel gets its three closest sites, ranked.
+-- K-nearest variant. The stable site_id tie-break makes ranking repeatable
+-- when two sites have the same computed distance.
+WITH distances AS (
+    SELECT
+        p.parcel_id,
+        s.site_id,
+        s.name AS nearby_site,
+        ST_Distance_Sphere(ST_Centroid(p.geom), s.geom) AS distance_m
+    FROM parcels AS p
+    CROSS JOIN service_sites AS s
+),
+ranked AS (
+    SELECT
+        *,
+        row_number() OVER (
+            PARTITION BY parcel_id
+            ORDER BY distance_m, site_id
+        ) AS rank
+    FROM distances
+)
 SELECT
-    p.parcel_id,
-    s.name AS nearby_site,
-    round(ST_Distance_Sphere(
-        ST_Point(ST_Y(ST_Centroid(p.geom)), ST_X(ST_Centroid(p.geom))),
-        ST_Point(ST_Y(s.geom), ST_X(s.geom))
-    ) / 1000.0, 2) AS distance_km,
-    row_number() OVER (
-        PARTITION BY p.parcel_id
-        ORDER BY ST_Distance_Sphere(
-            ST_Point(ST_Y(ST_Centroid(p.geom)), ST_X(ST_Centroid(p.geom))),
-            ST_Point(ST_Y(s.geom), ST_X(s.geom))
-        )
-    ) AS rank
-FROM parcels AS p
-CROSS JOIN service_sites AS s
-QUALIFY rank <= 2
-ORDER BY p.parcel_id, rank;
+    parcel_id,
+    site_id,
+    nearby_site,
+    round(distance_m / 1000.0, 2) AS distance_km,
+    rank
+FROM ranked
+WHERE rank <= 2
+ORDER BY parcel_id, rank;

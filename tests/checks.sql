@@ -140,4 +140,25 @@ FROM (
 ) AS mismatches
 UNION ALL
 SELECT 'partitioned_sites_roundtrip_count', '9', count(*)::VARCHAR
-FROM read_parquet('build/sites_by_category/**/*.parquet', hive_partitioning = true);
+FROM read_parquet('build/sites_by_category/**/*.parquet', hive_partitioning = true)
+UNION ALL
+SELECT 'h3_assigned_sites', '9', count(*)::VARCHAR
+FROM service_sites
+WHERE h3_latlng_to_cell(ST_Y(geom), ST_X(geom), 8) IS NOT NULL
+UNION ALL
+SELECT 'h3_aggregation_conserves_sites', '9', sum(cell_count)::BIGINT::VARCHAR
+FROM (
+    SELECT h3_latlng_to_cell(ST_Y(geom), ST_X(geom), 8) AS h3_cell,
+           count(*) AS cell_count
+    FROM service_sites
+    GROUP BY h3_cell
+) AS cells
+UNION ALL
+SELECT 'h3_boundary_wkt_shape', '9', count(*)::VARCHAR
+FROM (
+    SELECT h3_cell_to_boundary_wkt(h3_latlng_to_cell(ST_Y(geom), ST_X(geom), 8)) AS boundary_wkt
+    FROM service_sites
+) AS boundaries
+WHERE starts_with(upper(trim(boundary_wkt)), 'POLYGON')
+  AND contains(boundary_wkt, '(')
+  AND ends_with(trim(boundary_wkt), ')');

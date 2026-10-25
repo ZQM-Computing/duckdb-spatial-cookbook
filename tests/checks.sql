@@ -95,4 +95,21 @@ SELECT 'nearest_k_two_rank_values', '1,2', (
         FROM parcels p CROSS JOIN service_sites s
     ) ranked
     WHERE rank <= 2
-);
+)
+UNION ALL
+SELECT 'sites_by_area_roundtrip_count', '9', count(*)::VARCHAR
+FROM read_parquet('build/sites_by_area.parquet')
+UNION ALL
+SELECT 'sites_by_area_roundtrip_preserved', '9', count(*)::VARCHAR
+FROM read_parquet('build/sites_by_area.parquet') AS exported
+JOIN service_sites AS source USING (site_id)
+WHERE exported.name = source.name
+  AND exported.category = source.category
+  AND ST_Equals(exported.geom, source.geom)
+UNION ALL
+SELECT 'sites_by_area_orphan_count', '1', count(*)::VARCHAR
+FROM read_parquet('build/sites_by_area.parquet')
+WHERE service_area IS NULL
+UNION ALL
+SELECT 'partitioned_sites_roundtrip_count', '9', count(*)::VARCHAR
+FROM read_parquet('build/sites_by_category/**/*.parquet', hive_partitioning = true);

@@ -159,5 +159,6 @@ FROM (
     SELECT h3_cell_to_boundary_wkt(h3_latlng_to_cell(ST_Y(geom), ST_X(geom), 8)) AS boundary_wkt
     FROM service_sites
 ) AS boundaries
-WHERE starts_with(boundary_wkt, 'POLYGON((')
-  AND ends_with(boundary_wkt, '))');\n
+WHERE starts_with(upper(trim(boundary_wkt)), 'POLYGON')
+  AND contains(boundary_wkt, '(')
+  AND ends_with(trim(boundary_wkt), ')');

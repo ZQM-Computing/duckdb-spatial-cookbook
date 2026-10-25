@@ -1,5 +1,7 @@
 ﻿site_name: DuckDB Spatial Patterns
-site_description: DuckDB Spatial patterns — GeoJSON/GeoParquet reads, spatial joins, KNN, GeoParquet export, H3 aggregation
+site_description: DuckDB Spatial SQL examples for GeoJSON and GeoParquet, spatial joins, KNN, CRS handling, GeoParquet export, and H3 aggregation without a database server.
+site_author: ZQM Computing
+repo_url: https://github.com/ZQM-Computing/duckdb-spatial-cookbook
 site_url: https://duckdb.zqmlabs.com/
 theme:
     name: material

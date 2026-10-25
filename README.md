@@ -89,7 +89,7 @@ All data is synthetic. Coordinates fall around Volusia County, Florida for reali
 
 ## Companion repositories
 
-- [postgis-cookbook](https://github.com/ZQM-Computing/postgis-cookbook) — the same patterns as production PostGIS: indexing, tiling with `ST_AsMVT`, partitioning.
+- [postgis-cookbook](https://github.com/ZQM-Computing/postgis-cookbook) — related server-side PostGIS examples for indexing, tiling with `ST_AsMVT`, and partitioning.
 - [geospatial-api-reference](https://github.com/ZQM-Computing/geospatial-api-reference) — serving spatial data over REST (OGC API – Features, FastAPI + PostGIS).
 - [qgis-resources](https://github.com/ZQM-Computing/qgis-resources) — the desktop side: QGIS expressions, PyQGIS, styles, QField.
 

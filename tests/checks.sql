@@ -111,5 +111,33 @@ SELECT 'sites_by_area_orphan_count', '1', count(*)::VARCHAR
 FROM read_parquet('build/sites_by_area.parquet')
 WHERE service_area IS NULL
 UNION ALL
+SELECT 'sites_by_area_roundtrip_unique_ids', '9', count(DISTINCT site_id)::VARCHAR
+FROM read_parquet('build/sites_by_area.parquet')
+UNION ALL
+SELECT 'sites_by_area_source_loss', '0', count(*)::VARCHAR
+FROM service_sites AS source
+WHERE NOT EXISTS (
+    SELECT 1 FROM read_parquet('build/sites_by_area.parquet') AS exported
+    WHERE exported.site_id = source.site_id
+)
+UNION ALL
+SELECT 'sites_by_area_unexpected_ids', '0', count(*)::VARCHAR
+FROM read_parquet('build/sites_by_area.parquet') AS exported
+WHERE NOT EXISTS (
+    SELECT 1 FROM service_sites AS source
+    WHERE source.site_id = exported.site_id
+)
+UNION ALL
+SELECT 'sites_by_area_assignment_mismatches', '0', count(*)::VARCHAR
+FROM (
+    SELECT source.site_id, area.name AS expected_area, exported.service_area
+    FROM service_sites AS source
+    LEFT JOIN service_areas AS area
+        ON ST_Within(source.geom, area.geom)
+    JOIN read_parquet('build/sites_by_area.parquet') AS exported
+        ON exported.site_id = source.site_id
+    WHERE exported.service_area IS DISTINCT FROM area.name
+) AS mismatches
+UNION ALL
 SELECT 'partitioned_sites_roundtrip_count', '9', count(*)::VARCHAR
 FROM read_parquet('build/sites_by_category/**/*.parquet', hive_partitioning = true);

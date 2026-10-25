@@ -16,7 +16,7 @@
 
 Runnable **DuckDB Spatial** patterns for analytical geospatial work: reading **GeoJSON, GeoParquet, and CSV** in place, **spatial joins**, **nearest-neighbor** queries, coordinate-system handling (including the **EPSG axis-order trap**), **GeoParquet export and partitioning**, and **H3 hexagon aggregation** — all with **no database server to run**. DuckDB is embedded: `pip install duckdb` and the patterns execute.
 
-This is the analytical companion to [postgis-cookbook](https://github.com/ZQM-Computing/postgis-cookbook): the same synthetic dataset and the same questions, answered with the embedded engine instead of the server database. Explore in DuckDB, persist and serve from PostGIS — the [pattern guide](docs/pattern-guide.md) maps when each engine earns its place.
+This is the analytical companion to [postgis-cookbook](https://github.com/ZQM-Computing/postgis-cookbook): overlapping analytical questions and a similar synthetic Florida-shaped setting, implemented with the embedded engine instead of the server database. The fixtures are not identical in size or contents. Explore in DuckDB, persist and serve from PostGIS — the [pattern guide](docs/pattern-guide.md) maps when each engine earns its place.
 
 ## Repository role and status
 
@@ -61,7 +61,7 @@ and run the examples with `python scripts/run_examples.py`.
 
 ## Who this is for
 
-Data engineers and GIS analysts who keep spinning up a server database for what is really a file-and-notebook problem — or who are evaluating DuckDB Spatial and GeoParquet for a data-lake workflow and want patterns that run, not slides. If you already think in PostGIS, the parallel structure (same data, same questions) makes the mental translation explicit: no GiST index to design, axis order handled differently, KNN as a window function instead of an operator.
+Data engineers and GIS analysts who keep spinning up a server database for what is really a file-and-notebook problem — or who are evaluating DuckDB Spatial and GeoParquet for a data-lake workflow and want patterns that run, not slides. If you already think in PostGIS, the parallel structure makes the mental translation explicit (the examples use separate synthetic fixtures): no GiST index to design, axis order handled differently, KNN as a window function instead of an operator.
 
 ## Design principles
 

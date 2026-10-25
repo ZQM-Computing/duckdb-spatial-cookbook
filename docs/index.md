@@ -1,6 +1,3 @@
-Title: DuckDB Spatial Patterns
-Description: DuckDB Spatial SQL examples for GeoJSON and GeoParquet, spatial joins, KNN, CRS handling, GeoParquet export, and H3 aggregation without a database server.
-
 # DuckDB Spatial Patterns
 
 > DuckDB Spatial patterns — GeoJSON/GeoParquet reads, spatial joins, KNN, GeoParquet export, H3 aggregation

@@ -140,7 +140,7 @@ FROM (
 ) AS mismatches
 UNION ALL
 SELECT 'partitioned_sites_roundtrip_count', '9', count(*)::VARCHAR
-FROM read_parquet('build/sites_by_category/**/*.parquet', hive_partitioning = true);
+FROM read_parquet('build/sites_by_category/**/*.parquet', hive_partitioning = true)
 UNION ALL
 SELECT 'h3_assigned_sites', '9', count(*)::VARCHAR
 FROM service_sites

@@ -34,6 +34,30 @@ SELECT 'nearest_site_to_parcel_2', 'Central depot', (
     LIMIT 1
 )
 UNION ALL
+SELECT 'nearest_site_to_parcel_1', 'Central depot', (
+    SELECT s.name
+    FROM parcels p CROSS JOIN service_sites s
+    WHERE p.parcel_id = 1
+    ORDER BY ST_Distance_Sphere(ST_Centroid(p.geom), s.geom), s.site_id
+    LIMIT 1
+)
+UNION ALL
+SELECT 'nearest_site_to_parcel_3', 'Coastal depot', (
+    SELECT s.name
+    FROM parcels p CROSS JOIN service_sites s
+    WHERE p.parcel_id = 3
+    ORDER BY ST_Distance_Sphere(ST_Centroid(p.geom), s.geom), s.site_id
+    LIMIT 1
+)
+UNION ALL
+SELECT 'nearest_site_to_parcel_4', 'West depot', (
+    SELECT s.name
+    FROM parcels p CROSS JOIN service_sites s
+    WHERE p.parcel_id = 4
+    ORDER BY ST_Distance_Sphere(ST_Centroid(p.geom), s.geom), s.site_id
+    LIMIT 1
+)
+UNION ALL
 SELECT 'sphere_distance_north_pair_m', '10235', round(ST_Distance_Sphere(
     ST_Point(-81.10, 29.28),
     ST_Point(-81.02, 29.22)
@@ -48,4 +72,27 @@ FROM read_parquet('build/sites_by_category/**/*.parquet', hive_partitioning = tr
 WHERE category = 'operations'
 UNION ALL
 SELECT 'h3_cells_res8', '9', count(DISTINCT h3_latlng_to_cell(ST_Y(geom), ST_X(geom), 8))::VARCHAR
-FROM service_sites;
+FROM service_sites
+UNION ALL
+SELECT 'nearest_k_two_rows', '8', count(*)::VARCHAR
+FROM (
+    SELECT p.parcel_id, s.site_id,
+           row_number() OVER (
+               PARTITION BY p.parcel_id
+               ORDER BY ST_Distance_Sphere(ST_Centroid(p.geom), s.geom), s.site_id
+           ) AS rank
+    FROM parcels p CROSS JOIN service_sites s
+) ranked
+WHERE rank <= 2
+UNION ALL
+SELECT 'nearest_k_two_rank_values', '1,2', (
+    SELECT string_agg(DISTINCT rank::VARCHAR, ',' ORDER BY rank::VARCHAR)
+    FROM (
+        SELECT row_number() OVER (
+            PARTITION BY p.parcel_id
+            ORDER BY ST_Distance_Sphere(ST_Centroid(p.geom), s.geom), s.site_id
+        ) AS rank
+        FROM parcels p CROSS JOIN service_sites s
+    ) ranked
+    WHERE rank <= 2
+);

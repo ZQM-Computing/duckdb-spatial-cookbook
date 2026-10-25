@@ -14,7 +14,7 @@
 
 [![Validate examples](https://github.com/ZQM-Computing/duckdb-spatial-cookbook/actions/workflows/validate.yml/badge.svg)](https://github.com/ZQM-Computing/duckdb-spatial-cookbook/actions/workflows/validate.yml)
 
-Runnable DuckDB Spatial examples for serverless geospatial SQL: query GeoJSON, GeoParquet, and CSV; perform spatial joins and nearest-neighbor searches; handle CRS and EPSG axis order; export GeoParquet; and aggregate with H3. The examples use synthetic data and require no database server.
+A practical **DuckDB Spatial cookbook for analytical geospatial SQL** using GeoJSON, GeoParquet, and CSV without a separate database server. Examples cover spatial joins, nearest-neighbor queries, CRS and EPSG axis-order handling, GeoParquet export, and H3 aggregation on synthetic data. It is suited to GIS analysts and data engineers who need reproducible local analysis; validate memory, file-size, and extension-version assumptions against your workload.
 
 This is the analytical companion to [postgis-cookbook](https://github.com/ZQM-Computing/postgis-cookbook): the same synthetic dataset and the same questions, answered with the embedded engine instead of the server database. Explore in DuckDB, persist and serve from PostGIS — the [pattern guide](docs/pattern-guide.md) maps when each engine earns its place.
 

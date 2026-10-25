@@ -20,6 +20,7 @@ theme:
           icon: material/brightness-4
           name: Switch to dark mode
 markdown_extensions:
+    - meta
     - admonition
     - codehilite:
         guess_lang: false

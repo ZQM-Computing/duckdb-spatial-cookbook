@@ -27,6 +27,7 @@ FILES = [
     "patterns/04_nearest_neighbor.sql",
     "patterns/05_geoparquet_workflows.sql",
     "patterns/06_h3_aggregation.sql",
+    "patterns/07_geometry_quality.sql",
 ]
 
 

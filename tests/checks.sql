@@ -161,4 +161,31 @@ FROM (
 ) AS boundaries
 WHERE starts_with(upper(trim(boundary_wkt)), 'POLYGON')
   AND contains(boundary_wkt, '(')
-  AND ends_with(trim(boundary_wkt), ')');
+  AND ends_with(trim(boundary_wkt), ')')
+UNION ALL
+SELECT 'geometry_qa_invalid_geometries', '0', (
+    (SELECT count(*) FROM service_areas WHERE geom IS NOT NULL AND NOT ST_IsValid(geom))
+    + (SELECT count(*) FROM service_sites WHERE geom IS NOT NULL AND NOT ST_IsValid(geom))
+    + (SELECT count(*) FROM parcels WHERE geom IS NOT NULL AND NOT ST_IsValid(geom))
+)::VARCHAR
+UNION ALL
+SELECT 'geometry_qa_empty_geometries', '0', (
+    (SELECT count(*) FROM service_areas WHERE geom IS NOT NULL AND ST_IsEmpty(geom))
+    + (SELECT count(*) FROM service_sites WHERE geom IS NOT NULL AND ST_IsEmpty(geom))
+    + (SELECT count(*) FROM parcels WHERE geom IS NOT NULL AND ST_IsEmpty(geom))
+)::VARCHAR
+UNION ALL
+SELECT 'geometry_qa_null_geometries', '0', (
+    (SELECT count(*) FROM service_areas WHERE geom IS NULL)
+    + (SELECT count(*) FROM service_sites WHERE geom IS NULL)
+    + (SELECT count(*) FROM parcels WHERE geom IS NULL)
+)::VARCHAR
+UNION ALL
+SELECT 'geometry_qa_null_or_duplicate_ids', '0', (
+    (SELECT count(*) FILTER (WHERE area_id IS NULL) FROM service_areas)
+    + (SELECT count(*) - count(DISTINCT area_id) FROM service_areas)
+    + (SELECT count(*) FILTER (WHERE site_id IS NULL) FROM service_sites)
+    + (SELECT count(*) - count(DISTINCT site_id) FROM service_sites)
+    + (SELECT count(*) FILTER (WHERE parcel_id IS NULL) FROM parcels)
+    + (SELECT count(*) - count(DISTINCT parcel_id) FROM parcels)
+)::VARCHAR;

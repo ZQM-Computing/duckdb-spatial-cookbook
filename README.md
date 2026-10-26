@@ -58,6 +58,7 @@ and run the examples with `python scripts/run_examples.py`.
 | 04 | Nearest neighbor | KNN-style nearest-neighbor ranking with a `row_number()` CTE over `ST_Distance_Sphere` |
 | 05 | GeoParquet workflows | `COPY TO` GeoParquet export, hive-style partitioned writes, partition pruning on read |
 | 06 | H3 aggregation | Hexagon binning with the `h3` community extension, boundary WKT for mapping the result anywhere |
+| 07 | Geometry quality gates | Detect null/duplicate identifiers, null/empty geometries, and invalid geometry before joins or export |
 
 ## Who this is for
 
@@ -66,7 +67,7 @@ Data engineers and GIS analysts who keep spinning up a server database for what 
 ## Design principles
 
 1. **No server, no fixtures service.** Everything runs from files in the repo with one pip install — including in CI.
-2. **Verified numbers.** `tests/checks.sql` pins the expected results (distances to the meter, State Plane coordinates to the foot) so an engine upgrade that changes behavior fails loudly.
+2. **Verified numbers.** `tests/checks.sql` pins expected spatial results and quality invariants, so an engine upgrade that changes behavior or introduces bad geometry fails loudly.
 3. **Traps documented, not hidden.** The axis-order and degree-distance pitfalls are demonstrated with the wrong answer shown and labeled — the fastest way to learn to recognize them.
 4. **Formats are the interface.** Pattern outputs are GeoParquet files that open in QGIS, GeoPandas, and PostGIS pipelines unchanged.
 
@@ -75,7 +76,7 @@ Data engineers and GIS analysts who keep spinning up a server database for what 
 ```text
 .
 ├── sql/00_setup.sql     # extensions + sample tables from data/
-├── patterns/            # the six patterns, in reading order
+├── patterns/            # the seven patterns, in reading order
 ├── data/                # synthetic GeoJSON (3 areas, 9 sites, 4 parcels)
 ├── scripts/             # run_examples.py — full suite + checks
 ├── tests/checks.sql     # expected-value checks

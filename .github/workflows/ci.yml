@@ -65,11 +65,15 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then python -m pip install -r requirements.txt; fi
           if [ -f pyproject.toml ] || [ -f setup.py ]; then python -m pip install -e .; fi
-          python -m pip install pytest
-          if find . -path './.git' -prune -o -type f \( -name 'test_*.py' -o -name '*_test.py' \) -print -quit | grep -q .; then
+          if [ -f scripts/run_examples.py ]; then
+            echo "Running the repository's authoritative example and expected-value validation."
+            python scripts/run_examples.py
+          elif find . -path './.git' -prune -o -type f \( -name 'test_*.py' -o -name '*_test.py' \) -print -quit | grep -q .; then
+            python -m pip install pytest
             python -m pytest -q
           else
-            echo "No pytest-discoverable test files; dependency installation completed."
+            echo "::error::No recognized Python validation entry point found; refusing a false-green CI run." >&2
+            exit 1
           fi
 
   node:

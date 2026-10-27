@@ -4,13 +4,13 @@ These two engines are complements, not competitors. This repo and
 [postgis-cookbook](https://github.com/ZQM-Computing/postgis-cookbook) use the
 same sample dataset so the patterns translate directly.
 
-| Question | DuckDB Spatial (this repo) | PostGIS |
-|---|---|---|
-| Where does the data live? | Files: GeoParquet, GeoJSON, CSV, S3/GCS | A managed PostgreSQL database |
-| Concurrency model | One analyst process, embarrassingly parallel reads | Many simultaneous writers/readers |
-| Best at | Ad-hoc analysis, data-lake queries, ETL, prototyping, CI-friendly analytics | System of record, transactional edits, serving (APIs, tiles) |
-| Spatial indexing | Engine-managed join strategies; no user GiST to tune | GiST/SP-GiST/BRIN you design and maintain |
-| Setup cost | `pip install duckdb` | A database server (or Docker) |
+| Question                  | DuckDB Spatial (this repo)                                                  | PostGIS                                                      |
+| ------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| Where does the data live? | Files: GeoParquet, GeoJSON, CSV, S3/GCS                                     | A managed PostgreSQL database                                |
+| Concurrency model         | One analyst process, embarrassingly parallel reads                          | Many simultaneous writers/readers                            |
+| Best at                   | Ad-hoc analysis, data-lake queries, ETL, prototyping, CI-friendly analytics | System of record, transactional edits, serving (APIs, tiles) |
+| Spatial indexing          | Engine-managed join strategies; no user GiST to tune                        | GiST/SP-GiST/BRIN you design and maintain                    |
+| Setup cost                | `pip install duckdb`                                                        | A database server (or Docker)                                |
 
 Rule of thumb from production work: **explore and analyze in DuckDB, persist
 and serve from PostGIS.** A common flow is to prototype a spatial join here,

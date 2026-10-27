@@ -35,15 +35,15 @@ You can also explore interactively: install the [DuckDB CLI](https://duckdb.org/
 
 ## The patterns
 
-| # | Pattern | What it teaches |
-|---|---|---|
-| 01 | Reading geospatial data | `ST_Read` on GeoJSON, CSV coordinates → geometry, typed GeoParquet reads |
-| 02 | Spatial joins | Points-in-polygons with `ST_Within`, orphan detection, per-area land-use summaries |
-| 03 | Coordinate systems | The EPSG:4326 axis-order trap and the `OGC:CRS84` fix; sphere vs. planar distances; State Plane transforms |
-| 04 | Nearest neighbor | KNN without a spatial index: `row_number()` + `QUALIFY` ranking over `ST_Distance_Sphere` |
-| 05 | GeoParquet workflows | `COPY TO` GeoParquet export, hive-style partitioned writes, partition pruning on read |
-| 06 | H3 aggregation | Hexagon binning with the `h3` community extension, boundary WKT for mapping the result anywhere |
-| 07 | Geometry quality gates | Detect null/duplicate identifiers, null/empty geometries, and invalid geometry before joins or export |
+| #   | Pattern                 | What it teaches                                                                                            |
+| --- | ----------------------- | ---------------------------------------------------------------------------------------------------------- |
+| 01  | Reading geospatial data | `ST_Read` on GeoJSON, CSV coordinates → geometry, typed GeoParquet reads                                   |
+| 02  | Spatial joins           | Points-in-polygons with `ST_Within`, orphan detection, per-area land-use summaries                         |
+| 03  | Coordinate systems      | The EPSG:4326 axis-order trap and the `OGC:CRS84` fix; sphere vs. planar distances; State Plane transforms |
+| 04  | Nearest neighbor        | KNN without a spatial index: `row_number()` + `QUALIFY` ranking over `ST_Distance_Sphere`                  |
+| 05  | GeoParquet workflows    | `COPY TO` GeoParquet export, hive-style partitioned writes, partition pruning on read                      |
+| 06  | H3 aggregation          | Hexagon binning with the `h3` community extension, boundary WKT for mapping the result anywhere            |
+| 07  | Geometry quality gates  | Detect null/duplicate identifiers, null/empty geometries, and invalid geometry before joins or export      |
 
 ## Who this is for
 

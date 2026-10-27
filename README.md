@@ -50,6 +50,8 @@ and run the examples with `python scripts/run_examples.py`.
 
 ## The patterns
 
+<!-- markdownlint-disable MD060 -->
+<!-- This intentionally compact table avoids padding long instructional descriptions to the widest cell. -->
 | # | Pattern | What it teaches |
 |---|---|---|
 | 01 | Reading geospatial data | `ST_Read` on GeoJSON, CSV coordinates → geometry, typed GeoParquet reads |
@@ -59,6 +61,7 @@ and run the examples with `python scripts/run_examples.py`.
 | 05 | GeoParquet workflows | `COPY TO` GeoParquet export, hive-style partitioned writes, partition pruning on read |
 | 06 | H3 aggregation | Hexagon binning with the `h3` community extension, boundary WKT for mapping the result anywhere |
 | 07 | Geometry quality gates | Detect null/duplicate identifiers, null/empty geometries, and invalid geometry before joins or export |
+<!-- markdownlint-enable MD060 -->
 
 ## Who this is for
 

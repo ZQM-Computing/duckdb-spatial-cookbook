@@ -60,6 +60,18 @@ and run the examples with `python scripts/run_examples.py`.
 | 06  | H3 aggregation          | Hexagon binning with the `h3` community extension, boundary WKT for mapping the result anywhere            |
 | 07  | Geometry quality gates  | Detect null/duplicate identifiers, null/empty geometries, and invalid geometry before joins or export      |
 
+## Result-fetch memory benchmark
+
+The example runner deliberately renders at most `DISPLAY_ROW_LIMIT` rows plus one sentinel row; it does not materialize an entire analytical result just to print a preview. To quantify the memory trade-off on your own machine, run the opt-in subprocess benchmark:
+
+```bash
+python scripts/benchmark_result_memory.py --rows 2000000
+```
+
+It compares `fetchall()` with the runner's bounded `fetchmany(DISPLAY_ROW_LIMIT + 1)` behavior. Each strategy runs in a fresh process; the report includes rows fetched, elapsed fetch time, and process peak RSS. Peak RSS includes Python and DuckDB baseline memory, so compare the two runs on the same machine and interpret the difference rather than treating it as query-engine-only allocation. The default is two million integer rows; increase `--rows` gradually and monitor available RAM.
+
+This diagnostic uses Python's standard-library `resource` module and currently supports Linux and macOS, not Windows. It is intentionally excluded from routine CI because peak memory and timing are machine-dependent and large full-fetch runs can consume substantial RAM. The benchmark measures result materialization after query execution, not query execution memory or end-to-end spatial workload performance.
+
 ## Who this is for
 
 Data engineers and GIS analysts who keep spinning up a server database for what is really a file-and-notebook problem — or who are evaluating DuckDB Spatial and GeoParquet for a data-lake workflow and want patterns that run, not slides. If you already think in PostGIS, the parallel structure (same data, same questions) makes the mental translation explicit: no GiST index to design, axis order handled differently, KNN as a window function instead of an operator.

@@ -14,7 +14,6 @@ from __future__ import annotations
 import argparse
 import json
 import os
-import resource
 import subprocess
 import sys
 import time
@@ -23,6 +22,8 @@ DISPLAY_ROW_LIMIT = 12
 
 
 def peak_rss_mib() -> float:
+    import resource
+
     value = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
     # Linux reports KiB; macOS reports bytes.
     if sys.platform == "darwin":

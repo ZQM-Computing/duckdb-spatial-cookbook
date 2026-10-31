@@ -18,6 +18,7 @@ from pathlib import Path
 import duckdb
 
 ROOT = Path(__file__).resolve().parent.parent
+DISPLAY_ROW_LIMIT = 12
 
 FILES = [
     "sql/00_setup.sql",
@@ -45,15 +46,21 @@ def statements(sql: str) -> list[str]:
 
 
 def run_file(con: duckdb.DuckDBPyConnection, rel: str) -> None:
+    """Execute a SQL file while bounding memory used for printed result rows."""
     print(f"\n==> {rel}")
     for stmt in statements((ROOT / rel).read_text(encoding="utf-8")):
         result = con.execute(stmt)
         if result.description is not None:
-            rows = result.fetchall()
-            for row in rows[:12]:
+            # Fetch one sentinel row beyond the display limit. Do not fetchall():
+            # spatial joins and analytical queries can return millions of rows.
+            rows = result.fetchmany(DISPLAY_ROW_LIMIT + 1)
+            for row in rows[:DISPLAY_ROW_LIMIT]:
                 print("   ", row)
-            if len(rows) > 12:
-                print(f"    ... {len(rows) - 12} more rows")
+            if len(rows) > DISPLAY_ROW_LIMIT:
+                print(
+                    f"    ... additional rows omitted "
+                    f"(display capped at {DISPLAY_ROW_LIMIT})"
+                )
 
 
 def run_checks(con: duckdb.DuckDBPyConnection) -> None:

@@ -20,7 +20,10 @@ jobs:
           python-version: "3.12"
 
       - name: Install DuckDB
-        run: pip install -r requirements.txt
+        run: pip install pytest -r requirements.txt
+
+      - name: Test bounded result rendering
+        run: python -m pytest -q tests/test_runner.py
 
       - name: Run examples and checks
         run: python scripts/run_examples.py

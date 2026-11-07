@@ -59,6 +59,11 @@ and run the examples with `python scripts/run_examples.py`.
 | 05  | GeoParquet workflows    | `COPY TO` GeoParquet export, hive-style partitioned writes, partition pruning on read                      |
 | 06  | H3 aggregation          | Hexagon binning with the `h3` community extension, boundary WKT for mapping the result anywhere            |
 | 07  | Geometry quality gates  | Detect null/duplicate identifiers, null/empty geometries, and invalid geometry before joins or export      |
+| 08  | Unknown versus zero     | Coverage-aware parcel counts keep unknown as `NULL`, separate from observed zero                           |
+
+## Missing geospatial data is not zero
+
+[How to distinguish missing coverage from zero recorded observations](docs/unknown-vs-zero-parcel-screening.md) is an executable synthetic parcel-screening recipe with golden SQL checks. It demonstrates why **unknown** must remain `NULL` rather than be silently converted into a zero-count or a claim of environmental safety. Run it with the existing `python scripts/run_examples.py` command; no new cloud service or input data is required.
 
 ## Result-fetch memory benchmark
 
@@ -88,7 +93,7 @@ Data engineers and GIS analysts who keep spinning up a server database for what 
 ```text
 .
 ├── sql/00_setup.sql     # extensions + sample tables from data/
-├── patterns/            # the seven patterns, in reading order
+├── patterns/            # the eight patterns, in reading order
 ├── data/                # synthetic GeoJSON (3 areas, 9 sites, 4 parcels)
 ├── scripts/             # run_examples.py — full suite + checks
 ├── tests/checks.sql     # expected-value checks

@@ -188,4 +188,28 @@ SELECT 'geometry_qa_null_or_duplicate_ids', '0', (
     + (SELECT count(*) - count(DISTINCT site_id) FROM service_sites)
     + (SELECT count(*) FILTER (WHERE parcel_id IS NULL) FROM parcels)
     + (SELECT count(*) - count(DISTINCT parcel_id) FROM parcels)
-)::VARCHAR;
+)::VARCHAR
+UNION ALL
+SELECT 'coverage_synthetic_parcel_count', '4', count(*)::VARCHAR
+FROM parcel_observation_summary
+UNION ALL
+SELECT 'coverage_observed_count', '3', count(*)::VARCHAR
+FROM parcel_observation_summary
+WHERE observation_status = 'observed_sites'
+  AND observed_site_count IS NOT NULL
+UNION ALL
+SELECT 'coverage_unknown_count', '1', count(*)::VARCHAR
+FROM parcel_observation_summary
+WHERE observation_status = 'unknown_missing_coverage'
+  AND observed_site_count IS NULL
+UNION ALL
+SELECT 'coverage_unknown_is_not_zero', '1', count(*)::VARCHAR
+FROM parcel_observation_summary
+WHERE parcel_id = 4
+  AND observed_site_count IS NULL
+  AND observation_status = 'unknown_missing_coverage'
+UNION ALL
+SELECT 'coverage_no_fabricated_zero_for_unknown', '0', count(*)::VARCHAR
+FROM parcel_observation_summary
+WHERE observation_status = 'unknown_missing_coverage'
+  AND observed_site_count = 0;

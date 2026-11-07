@@ -21,7 +21,7 @@ python scripts/run_examples.py
 The runner loads the repo's synthetic **four parcel** and **nine site**
 fixtures, executes all eight numbered SQL patterns and runs the golden
 checks in `tests/checks.sql`. Pattern 08 lives at
-[missing coverage versus zero](../patterns/08_missing_coverage_vs_zero.sql).
+`patterns/08_missing_coverage_vs_zero.sql` (in the repository root).
 
 ## What the example actually does
 

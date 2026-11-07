@@ -59,7 +59,7 @@ and run the examples with `python scripts/run_examples.py`.
 | 05  | GeoParquet workflows    | `COPY TO` GeoParquet export, hive-style partitioned writes, partition pruning on read                      |
 | 06  | H3 aggregation          | Hexagon binning with the `h3` community extension, boundary WKT for mapping the result anywhere            |
 | 07  | Geometry quality gates  | Detect null/duplicate identifiers, null/empty geometries, and invalid geometry before joins or export      |
-| 08  | Missing coverage versus zero | Preserve `NULL` and explicit unknown observation status when a synthetic parcel has no coverage; do not misreport as zero recorded sites |
+| 08  | Unknown versus zero     | Coverage-aware parcel counts keep unknown as `NULL`, separate from observed zero                           |
 
 ## Missing geospatial data is not zero
 

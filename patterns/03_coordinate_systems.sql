@@ -3,7 +3,7 @@
 -- is (latitude, longitude), while GeoJSON and ST_Point use (longitude,
 -- latitude). That mismatch is the root of every trap in this file.
 --
--- Current DuckDB (>= 2.0) refuses to guess: any axis-sensitive function
+-- Current DuckDB refuses to guess: any axis-sensitive function
 -- (ST_Transform, ST_Distance_Sphere, ...) called on geometry without an
 -- explicit CRS errors out unless 'geometry_always_xy' is enabled. That
 -- setting is DuckDB's sanctioned switch -- "always assume my coordinates
